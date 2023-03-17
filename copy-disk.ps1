@@ -51,7 +51,7 @@ catch {
     # Update guestinfo.network
     Get-AdvancedSetting -Entity $vm -Name "guestinfo.metadata" | Set-AdvancedSetting -Value "$cloudInitNetworkFile" -Confirm:$false
 }
-fix:try {
+try {
     New-AdvancedSetting -Entity $vm -Name "guestinfo.metadata.encoding" -Value "base64" -Confirm:$false -ErrorAction Stop
 }
 catch {
