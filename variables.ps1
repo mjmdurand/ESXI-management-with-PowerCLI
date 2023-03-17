@@ -1,0 +1,17 @@
+$serverAddress = "10.0.0.0"
+$datastoreName = "OS"
+$cloudImageName = "2023-03-17-jammy-server-cloudimg-amd64.vmdk"
+$originDirectory = "ISO/Ubuntu"
+$VMName = "test-VM"
+$diskName = "Hard Disk 1"
+$extendedCapacity = 20
+$originPath = "[$datastoreName] $originDirectory/$cloudImageName"
+$destPath = "[$datastoreName] $VMName/$VMName.vmdk"
+$cloudInitNetworkFile = Get-Content "./cloud-init-metadata-base64.yaml"
+$cloudInitUserdataFile = Get-Content "./cloud-init-userdata-base64.yaml"
+$firstConnect = $false
+$newVM = $true
+$deleteVM = $true
+$cleanBeforeStart = $false
+$copyDisk = $true
+$startAtEnd = $true
