@@ -10,7 +10,7 @@ New-VM `
 }
 catch {
     write-host "
-    Failed to create VM
+    Failed to create VM, check if your license allow this action
     Name : $VMName
     Datastore : $datastoreOrigin
     CPU : $cpu
