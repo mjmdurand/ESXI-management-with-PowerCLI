@@ -1,21 +1,21 @@
 # ESXI parameters
-$serverAddress = "10.0.0.0"
+$serverAddress = "192.168.50.30"
 
 # Cloud image parameters
-$datastoreOrigin = "OS"
-$originDirectory = "ISO/Ubuntu"
-$cloudImageName = "2023-03-17-jammy-server-cloudimg-amd64.vmdk"
+$datastoreOrigin = "SAN01"
+$originDirectory = "ISOS/UBUNTU"
+$cloudImageName = "20230317-jammy-server-cloudimg-amd64.vmdk"
 
 # Cloud HDD must always be the 1st disk
 $diskName = "Hard Disk 1"
 
 # VM parameters
-$datastoreVM = "DATA"
+$datastoreVM = "SAN02"
 $VMName = "test-VM"
 $HDD = 20
 $cpu = 2
 $ram = 4
-$network = "LAN"
+$network = "00 No Vlan"
 
 # GuestId reference : 
 # https://vdc-repo.vmware.com/vmwb-repository/dcr-public/6b586ed2-655c-49d9-9029-bc416323cb22/fa0b429a-a695-4c11-b7d2-2cbc284049dc/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
@@ -26,8 +26,8 @@ $originPath = "[$datastoreOrigin] $originDirectory/$cloudImageName"
 $destPath = "[$datastoreVM] $VMName/$VMName.vmdk"
 
 # Cloud-Init base64 files
-$cloudInitMetadataFile = "./cloud-init-metadata-base64.yaml"
-$cloudInitUserdataFile = "./cloud-init-userdata-base64.yaml"
+$cloudInitMetadataFile = "./conf/cloud-init-metadata-base64.yaml"
+$cloudInitUserdataFile = "./conf/cloud-init-userdata-base64.yaml"
 
 # Install PowerCLI module for powershell and disable ssl check
 # REQUIRES ADMIN PERMISSION IN POWERSHELL TERMINAL
@@ -43,13 +43,13 @@ $newVM = $false
 $deleteVM = $false
 
 # If the VM already exists and if you want to delete the HDD
-$cleanBeforeStart = $false
+$cleanBeforeStart = $true
 
 # Copy .vdmk cloud from storage directory to VM
-$copyDisk = $false
+$copyDisk = $true
 
 # Add the mandatory variables for cloud-init
-$advancedConfig = $false
+$advancedConfig = $true
 
 # Start the VM once all is finished
-$startAtEnd = $false
+$startAtEnd = $true
