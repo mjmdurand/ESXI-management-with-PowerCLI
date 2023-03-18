@@ -6,7 +6,7 @@
 #### https://cloud-images.ubuntu.com/jammy/current/
 
 # Variables
-. ./lib/variables.ps1
+. ./conf/variables.ps1
 
 # install PowerCLI from repositories
 if ($installPowerCli) {
