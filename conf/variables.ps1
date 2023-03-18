@@ -1,21 +1,21 @@
 # ESXI parameters
-$serverAddress = "192.168.50.30"
+$serverAddress = "10.0.0.0"
 
 # Cloud image parameters
-$datastoreOrigin = "SAN01"
-$originDirectory = "ISOS/UBUNTU"
+$datastoreOrigin = "OS"
+$originDirectory = "ISO/Ubnuntu"
 $cloudImageName = "20230317-jammy-server-cloudimg-amd64.vmdk"
 
 # Cloud HDD must always be the 1st disk
 $diskName = "Hard Disk 1"
 
 # VM parameters
-$datastoreVM = "SAN02"
+$datastoreVM = "DATA"
 $VMName = "test-VM"
 $HDD = 20
 $cpu = 2
 $ram = 4
-$network = "00 No Vlan"
+$network = "LAN"
 
 # GuestId reference : 
 # https://vdc-repo.vmware.com/vmwb-repository/dcr-public/6b586ed2-655c-49d9-9029-bc416323cb22/fa0b429a-a695-4c11-b7d2-2cbc284049dc/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
@@ -43,13 +43,13 @@ $newVM = $false
 $deleteVM = $false
 
 # If the VM already exists and if you want to delete the HDD
-$cleanBeforeStart = $true
+$cleanBeforeStart = $false
 
 # Copy .vdmk cloud from storage directory to VM
-$copyDisk = $true
+$copyDisk = $false
 
 # Add the mandatory variables for cloud-init
-$advancedConfig = $true
+$advancedConfig = $false
 
 # Start the VM once all is finished
-$startAtEnd = $true
+$startAtEnd = $false
