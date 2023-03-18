@@ -32,6 +32,11 @@ if ($cleanBeforeStart) {
     . ./clean.ps1
 }
 
+# Advanced config
+if ($advancedConfig) {
+    . ./advanced-config.ps1
+}
+
 
 # Copy Hard disk
 if ($copyDisk) {

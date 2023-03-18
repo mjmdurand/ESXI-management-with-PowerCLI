@@ -2,7 +2,7 @@ try {
     $vm = Get-VM -Name "$VMName" -ErrorAction Stop
 }
 catch {
-    write-host "VM inexistante : $VMName"
+    write-host "Unexisting VM : $VMName"
 }
 # Start Vm
 try {

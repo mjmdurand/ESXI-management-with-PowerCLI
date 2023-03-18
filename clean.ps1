@@ -3,7 +3,7 @@ try {
     $harddisk = Get-HardDisk -VM $vm | where {$_.Name -eq "$diskName"}
 }
 catch {
-    write-host "VM inexistante : $VMName"
+    write-host "Unexisting VM : $VMName"
 }
 # Stop Vm
 try {
