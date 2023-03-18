@@ -26,10 +26,11 @@ $originPath = "[$datastoreOrigin] $originDirectory/$cloudImageName"
 $destPath = "[$datastoreVM] $VMName/$VMName.vmdk"
 
 # Cloud-Init base64 files
-$cloudInitNetworkFile = Get-Content "./cloud-init-metadata-base64.yaml"
-$cloudInitUserdataFile = Get-Content "./cloud-init-userdata-base64.yaml"
+$cloudInitMetadataFile = "./cloud-init-metadata-base64.yaml"
+$cloudInitUserdataFile = "./cloud-init-userdata-base64.yaml"
 
-# Install PowerCLI module for powershell ans disable ssl check
+# Install PowerCLI module for powershell and disable ssl check
+# REQUIRES ADMIN PERMISSION IN POWERSHELL TERMINAL
 $installPowerCli = $false
 
 # Prompt for Login/Password, only required once for a same PS terminal
