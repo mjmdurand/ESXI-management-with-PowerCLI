@@ -5,7 +5,7 @@ catch {
     write-host "Unexisting VM : $VMName"
 }
 try {
-    Get-HardDisk -Datastore "OS" -DatastorePath "$originPath" | Copy-HardDisk -DestinationPath "$destPath" -Force #-ErrorAction Stop
+    Get-HardDisk -Datastore "$datastoreOrigin" -DatastorePath "$originPath" | Copy-HardDisk -DestinationPath "$destPath" -Force #-ErrorAction Stop
 }
 catch {
     write-host "
