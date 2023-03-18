@@ -1,5 +1,12 @@
 # Variables
 . ./conf/variables.ps1
+
+# Esxi connection
+if ($connectAtBegin) {
+    . ./lib/connect.ps1
+}
+
+# Variables
 try {
     $vm = Get-VM -Name "$VMName" -ErrorAction Stop
 }
@@ -11,11 +18,6 @@ try {
 }
 catch {
     write-host "Failed to find VMHost : $vm"
-}
-
-# Esxi connection
-if ($connectAtBegin) {
-    . ./lib/connect.ps1
 }
 
 # Enable httpClient
