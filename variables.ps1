@@ -29,6 +29,9 @@ $destPath = "[$datastoreVM] $VMName/$VMName.vmdk"
 $cloudInitNetworkFile = Get-Content "./cloud-init-metadata-base64.yaml"
 $cloudInitUserdataFile = Get-Content "./cloud-init-userdata-base64.yaml"
 
+# Install PowerCLI module for powershell ans disable ssl check
+$installPowerCli = $false
+
 # Prompt for Login/Password, only required once for a same PS terminal
 $firstConnect = $false
 
