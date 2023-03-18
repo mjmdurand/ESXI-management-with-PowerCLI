@@ -7,9 +7,11 @@
 
 # Variables
 . ./conf/variables.ps1
+. ./conf/variables.ps1
 
 # install PowerCLI from repositories
 if ($installPowerCli) {
+    . ./lib/install.ps1
     . ./lib/install.ps1
 }
 
@@ -21,25 +23,30 @@ if ($connectAtBegin) {
 # Create a new VM
 if ($deleteVM) {
     . ./lib/delete-vm.ps1
+    . ./lib/delete-vm.ps1
 }
 
 # Create a new VM
 if ($newVM) {
     . ./lib/new-vm.ps1
+    . ./lib/new-vm.ps1
 }
 
 if ($cleanBeforeStart) {
+    . ./lib/clean.ps1
     . ./lib/clean.ps1
 }
 
 # Advanced config
 if ($advancedConfig) {
     . ./lib/advanced-config.ps1
+    . ./lib/advanced-config.ps1
 }
 
 
 # Copy Hard disk
 if ($copyDisk) {
+    . ./lib/copy-disk.ps1
     . ./lib/copy-disk.ps1
 }
 
