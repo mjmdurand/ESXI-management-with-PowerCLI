@@ -1,109 +1,52 @@
 # Variables
 . ./conf/variables.ps1
-
 try {
     $vm = Get-VM -Name "$VMName" -ErrorAction Stop
 }
 catch {
     write-host "Unexisting VM : $VMName"
 }
-try {
+try {    
     $vmHost = Get-VMHost -VM "$vm" -ErrorAction Stop
 }
 catch {
     write-host "Failed to find VMHost : $vm"
 }
 
+# Esxi connection
+if ($connectAtBegin) {
+    . ./lib/connect.ps1
+}
 
 # Enable httpClient
-try {
-    $httpClientFirewallExceptions = Get-VMHostFirewallException -VMHost $vmHost -ErrorAction Stop | where {$_.Name.StartsWith('httpClient')}
-    $httpClientFirewallExceptions | Set-VMHostFirewallException -Enabled $true -ErrorAction Stop
-}
-catch {
-    write-host "Failed to enable  httpClient
-    $httpClientFirewallExceptions"
-}
+. ./lib/enable-http-client.ps1
 
-<#
 # stop all VM
-$VMList = Get-VM | where-Object -Property PowerState -eq PoweredOn 
-ForEach ($ToStop in $VMList) {
-    try {
-        Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop
-    }
-    catch {
-        write-host "Failed to stop VM : $($ToStop.Name)"
-    }
-
+. ./lib/stop-all-vm.ps1
 
 # Enable Maintenance mode
-try {
-    set-vmhost -VMHost "$vmHost" -ConnectionState Maintenance -ErrorAction Stop
-}
-catch {
-    write-host "Failed to find VMHost : $vm"
-}
+. ./lib/enable-maintenance.ps1
 
 # Update ESXI
-# Search
-$esxcli = Get-EsxCli -VMHost (Get-VMHost “$($vmHost.Name)”)
-$updates_filter = "ESXi-7.0"
-$updates = $esxcli.software.sources.profile.list.Invoke('https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml') | where-Object -Property Name -like "*$updates_filter*"
-ForEach ($update in $updates) {
-        write-host $update.Name
-}
+# Search Updates
+. ./lib/search-updates.ps1
 
-$selectedUpdate = Read-Host -Prompt "Please type the update you want "
-# Apply
-$esxcli.software.profile.update.Invoke("$selectedUpdate")
+# Build Updates list
+. ./lib/build-updates.ps1
 
+# Apply Updates
+. ./lib/apply-updates.ps1
 
 # Disable httpClient
-try {
-    $httpClientFirewallExceptions = Get-VMHostFirewallException -VMHost $vmHost -ErrorAction Stop | where {$_.Name.StartsWith('httpClient')}
-    $httpClientFirewallExceptions | Set-VMHostFirewallException -Enabled $false -ErrorAction Stop
-}
-catch {
-    write-host "Failed to enable  httpClient
-    $httpClientFirewallExceptions"
-}
-
+. ./lib/disable-http-client.ps1
 
 # Disable Maintenance mode
-try {
-    set-vmhost -VMHost "$vmHost" -ConnectionState Connected -ErrorAction Stop
-}
-catch {
-    write-host "Failed to find VMHost : $vm"
-}
-
+. ./lib/disable-maintenance.ps1
 
 # start all VM
-$VMList = Get-VM | where-Object -Property PowerState -eq PoweredOff 
-ForEach ($ToStop in $VMList) {
-    try {
-        Start-VM -VM $vm -Confirm:$false -ErrorAction Stop
-    }
-    catch {
-        write-host "Failed to start VM : $($ToStop.Name)"
-    }
+. ./lib/start-all-vm.ps1
+
+# Esxi disconnect
+if ($disconnectAtEnd) {
+    . ./lib/disconnect.ps1
 }
-
-#>
-
-
-
-<#
-    $datastorename = "mgt-ds01"
-    $clustername = "Management"
-    $hosts = get-cluster $ClusterName | get-vmhost
-    $hosts | get-vm | stop-vm -confirm:$false
-    $hosts | set-vmhost -state "maintenance" -confirm:$false
-    $hosts | Install-VMHostPatch -HostPath /vmfs/volumes/$datastorename/60u2/metadata.zip
-    $hosts | restart-vmhost -force -confirm:$false
-    $hosts | set-vmhost -state "Connected" -confirm:$false
-    $hosts | get-vm | start-vm
-
-
-#>
