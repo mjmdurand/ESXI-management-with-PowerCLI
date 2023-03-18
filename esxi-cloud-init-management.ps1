@@ -6,44 +6,44 @@
 #### https://cloud-images.ubuntu.com/jammy/current/
 
 # Variables
-. ./variables.ps1
+. ./lib/variables.ps1
 
 # install PowerCLI from repositories
 if ($installPowerCli) {
-    . ./install.ps1
+    . ./lib/install.ps1
 }
 
 # Esxi connection
 if ($firstConnect) {
-    . ./connect.ps1
+    . ./lib/connect.ps1
 }
 
 # Create a new VM
 if ($deleteVM) {
-    . ./delete-vm.ps1
+    . ./lib/delete-vm.ps1
 }
 
 # Create a new VM
 if ($newVM) {
-    . ./new-vm.ps1
+    . ./lib/new-vm.ps1
 }
 
 if ($cleanBeforeStart) {
-    . ./clean.ps1
+    . ./lib/clean.ps1
 }
 
 # Advanced config
 if ($advancedConfig) {
-    . ./advanced-config.ps1
+    . ./lib/advanced-config.ps1
 }
 
 
 # Copy Hard disk
 if ($copyDisk) {
-    . ./copy-disk.ps1
+    . ./lib/copy-disk.ps1
 }
 
 # Start VM
 if ($startAtEnd) {
-    . ./start-vm.ps1
+    . ./lib/start-vm.ps1
 }

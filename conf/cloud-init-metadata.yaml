@@ -7,12 +7,13 @@ network:
       dhcp4: false
       dhcp6: false
       addresses:
-        - 192.168.10.3/24
+        - 192.168.50.20/24
       routes:
           - to: default
-            via: 192.168.10.254
+            via: 192.168.50.254
       nameservers:
-        addresses: [192.168.10.254,8.8.8.8]
+        search: [urios.local,uriosbeic.local,beic.local]
+        addresses: [192.168.200.100,8.8.8.8]
 
 ###########################################################################
 ############### Encrypt this file to Base64 with command : ################
