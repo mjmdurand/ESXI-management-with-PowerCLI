@@ -1,10 +1,10 @@
 # ESXI parameters
-$serverAddress = "10.0.0.0"
+$serverAddress = "51.91.27.27"
 
 # Cloud image parameters
 $datastoreOrigin = "OS"
-$originDirectory = "ISO/Ubnuntu"
-$cloudImageName = "20230317-jammy-server-cloudimg-amd64.vmdk"
+$originDirectory = "ISO/Ubuntu"
+$cloudImageName = "2023-03-17-jammy-server-cloudimg-amd64.vmdk"
 
 # Cloud HDD must always be the 1st disk
 $diskName = "Hard Disk 1"
@@ -42,19 +42,19 @@ $connectAtBegin = $true
 $disconnectAtEnd = $true
 
 # Create a new VM from scratch
-$newVM = $false
+$newVM = $true
 
 # Delete a VM
-$deleteVM = $false
+$deleteVM = $true
 
 # If the VM already exists and if you want to delete the HDD
 $cleanBeforeStart = $false
 
 # Copy .vdmk cloud from storage directory to VM
-$copyDisk = $false
+$copyDisk = $true
 
 # Add the mandatory variables for cloud-init
-$advancedConfig = $false
+$advancedConfig = $true
 
 # Start the VM once all is finished
-$startAtEnd = $false
+$startAtEnd = $true

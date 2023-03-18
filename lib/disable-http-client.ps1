@@ -4,5 +4,5 @@ try {
 }
 catch {
     write-host "Failed to enable  httpClient
-    $httpClientFirewallExceptions"
+    $httpClientFirewallExceptions" -ForegroundColor black -BackgroundColor red
 }

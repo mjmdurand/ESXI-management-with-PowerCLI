@@ -12,5 +12,5 @@ try {
     }
 }
 catch {
-    write-host "Failed to build update list"
+    write-host "Failed to build update list" -ForegroundColor black -BackgroundColor red
 }

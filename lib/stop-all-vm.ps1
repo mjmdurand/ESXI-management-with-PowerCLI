@@ -4,6 +4,6 @@ ForEach ($ToStop in $VMList) {
         Stop-VM -VM $ToStop -Confirm:$false -ErrorAction Stop
     }
     catch {
-        write-host "Failed to stop VM : $($ToStop.Name)"
+        write-host "Failed to stop VM : $($ToStop.Name)" -ForegroundColor black -BackgroundColor red
     }
 }

@@ -11,13 +11,13 @@ try {
     $vm = Get-VM -Name "$VMName" -ErrorAction Stop
 }
 catch {
-    write-host "Unexisting VM : $VMName"
+    write-host "Unexisting VM : $VMName" -ForegroundColor black -BackgroundColor red
 }
 try {    
     $vmHost = Get-VMHost -VM "$vm" -ErrorAction Stop
 }
 catch {
-    write-host "Failed to find VMHost : $vm"
+    write-host "Failed to find VMHost : $vm" -ForegroundColor black -BackgroundColor red
 }
 
 # Enable httpClient

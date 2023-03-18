@@ -3,5 +3,5 @@ try {
     $esxcli.software.profile.update.Invoke("$selectedUpdate")
 }
 catch {
-    write-host "Failed to apply update"
+    write-host "Failed to apply update" -ForegroundColor black -BackgroundColor red
 }

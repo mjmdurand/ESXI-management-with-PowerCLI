@@ -4,6 +4,6 @@ ForEach ($ToStart in $VMList) {
         Start-VM -VM $ToStart -Confirm:$false -ErrorAction Stop
     }
     catch {
-        write-host "Failed to start VM : $($ToStart.Name)"
+        write-host "Failed to start VM : $($ToStart.Name)" -ForegroundColor black -BackgroundColor red
     }
 }
