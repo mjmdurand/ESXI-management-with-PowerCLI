@@ -14,7 +14,7 @@ if ($installPowerCli) {
 }
 
 # Esxi connection
-if ($firstConnect) {
+if ($connectAtBegin) {
     . ./lib/connect.ps1
 }
 
@@ -46,4 +46,9 @@ if ($copyDisk) {
 # Start VM
 if ($startAtEnd) {
     . ./lib/start-vm.ps1
+}
+
+# Esxi disconnect
+if ($disconnectAtEnd) {
+    . ./lib/disconnect.ps1
 }

@@ -33,8 +33,13 @@ $cloudInitUserdataFile = "./conf/cloud-init-userdata-base64.yaml"
 # REQUIRES ADMIN PERMISSION IN POWERSHELL TERMINAL
 $installPowerCli = $false
 
-# Prompt for Login/Password, only required once for a same PS terminal
-$firstConnect = $false
+# Connection settings
+# if you want to stay connected : 
+# at 1st launch set $true/$false
+# next launches set $false/$false
+# $true/$true will ask login/password at each run
+$connectAtBegin = $true
+$disconnectAtEnd = $true
 
 # Create a new VM from scratch
 $newVM = $false
