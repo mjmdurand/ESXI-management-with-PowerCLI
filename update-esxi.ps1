@@ -45,3 +45,8 @@ if ($connectAtBegin) {
 
 # start all VM
 . ./lib/start-all-vm.ps1
+
+# Esxi disconnect
+if ($disconnectAtEnd) {
+    . ./lib/disconnect.ps1
+}
