@@ -1,5 +1,6 @@
 # ESXI parameters
-$serverAddress = "51.91.27.27"
+$serverAddress = "192.168.1.5"
+$depot = 'https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml'
 
 # Cloud image parameters
 $datastoreOrigin = "OS"

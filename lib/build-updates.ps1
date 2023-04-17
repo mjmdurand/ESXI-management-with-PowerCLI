@@ -6,7 +6,10 @@ try {
     $updates_filter = Read-Host -Prompt "Current ESXI version "
     write-host "Building update list ..."
     #Next, look to Get-EsxImageProfile
-    $updates = $esxcli.software.sources.profile.list.Invoke('https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml') | where-Object -Property Name -like "*$updates_filter*" -ErrorAction Stop 
+    $argsUpdates = $esxcli.software.sources.profile.list.CreateArgs()
+    $argsUpdates.depot = $depot
+
+    $updates = $esxcli.software.sources.profile.list.Invoke($argsUpdates) | where-Object -Property Name -like "*$updates_filter*" -ErrorAction Stop 
     ForEach ($update in $updates) {
         write-host $update.Name
     }

@@ -8,6 +8,7 @@ if ($connectAtBegin) {
 
 # Variables
 try {
+    $VMName = Read-Host -Prompt "Please provide an existing VM name on that host "
     $vm = Get-VM -Name "$VMName" -ErrorAction Stop
 }
 catch {
