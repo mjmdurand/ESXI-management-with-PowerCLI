@@ -53,3 +53,5 @@ catch {
 if ($disconnectAtEnd) {
     . ./lib/disconnect.ps1
 }
+
+write-host "To apply the update, please restart your host." -ForegroundColor black -BackgroundColor yellow
